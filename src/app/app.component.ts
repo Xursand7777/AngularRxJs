@@ -37,6 +37,4 @@ export class AppComponent {
     this.button2Click$.next(this._btn2Counter++);
 
   }
-
-
 }
