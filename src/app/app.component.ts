@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {map, Subject} from "rxjs";
+import {map, Subject, take} from "rxjs";
 
 @Component({
   selector: 'app-root',
@@ -23,6 +23,7 @@ export class AppComponent {
     this.button2Click$
       .pipe(
         map((value) => value * 10),
+        take(5)
       )
       .subscribe((value) => this.log.push(value.toString()));
   }
@@ -33,9 +34,7 @@ export class AppComponent {
 
   button2Click() {
     this.button2Click$.next(this._btn2Counter++);
-    if(this._btn2Counter > 4){
-      this.button2Click$.complete();
-    }
+
   }
 
   private _btn2Counter = 0;
