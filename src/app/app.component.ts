@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {map, Subject, take,} from "rxjs";
+import { map, skip, Subject, take,} from "rxjs";
 
 @Component({
   selector: 'app-root',
@@ -24,8 +24,8 @@ export class AppComponent {
     this.button2Click$
       .pipe(
         map((value) => value * 10),
-        map((value) => this.log.length + value),
-        take(4)
+        skip(3),
+        take(3)
       )
       .subscribe((value) => this.log.push(value.toString()));
   }
