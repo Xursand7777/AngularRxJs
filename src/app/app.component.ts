@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {map, Subject, take} from "rxjs";
+import {map, Subject,} from "rxjs";
 
 @Component({
   selector: 'app-root',
@@ -13,6 +13,7 @@ export class AppComponent {
   public button2Click$: Subject<number> = new Subject<number>();
 
   public log: string[] = [];
+  private _btn2Counter = 0;
 
   constructor() {
     // код пишем только тут в конструкторе
@@ -23,7 +24,7 @@ export class AppComponent {
     this.button2Click$
       .pipe(
         map((value) => value * 10),
-        take(5)
+        map((value) => this.log.length + value),
       )
       .subscribe((value) => this.log.push(value.toString()));
   }
@@ -37,5 +38,5 @@ export class AppComponent {
 
   }
 
-  private _btn2Counter = 0;
+
 }
