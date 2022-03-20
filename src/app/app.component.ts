@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {map, Subject,} from "rxjs";
+import {map, Subject, take,} from "rxjs";
 
 @Component({
   selector: 'app-root',
@@ -25,6 +25,7 @@ export class AppComponent {
       .pipe(
         map((value) => value * 10),
         map((value) => this.log.length + value),
+        take(4)
       )
       .subscribe((value) => this.log.push(value.toString()));
   }
