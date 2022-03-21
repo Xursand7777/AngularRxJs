@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { debounceTime,  skipUntil, Subject,  timer} from "rxjs";
+import {map, Subject, tap} from "rxjs";
 
 @Component({
   selector: 'app-root',
@@ -23,8 +23,8 @@ export class AppComponent {
 
     this.button2Click$
       .pipe(
-          debounceTime(2000),
-          skipUntil(timer(2000)),
+          map((value) => value * 10),
+          map((value, index) => value + index)
       )
       .subscribe((value) => this.log.push(value.toString()));
   }
